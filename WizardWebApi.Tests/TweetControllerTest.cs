@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace WizardWebRole.Tests
+namespace WizardWebApi.Tests
 {
     [TestClass]
     public class TweetControllerTest

@@ -37,6 +37,7 @@
     <ServiceConfiguration Include="ServiceConfiguration.Cloud.cscfg" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Profiles" />
     <Folder Include="WizardWebApiContent" />
   </ItemGroup>
   <ItemGroup>
@@ -45,13 +46,16 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WizardWebRole\WizardWebApi.csproj">
+    <ProjectReference Include="..\WizardWebApi\WizardWebApi.csproj">
       <Name>WizardWebApi</Name>
       <Project>{7d147f1f-ecad-45dd-8bb7-92497eae8bc6}</Project>
       <Private>True</Private>
       <RoleType>Web</RoleType>
       <RoleName>WizardWebApi</RoleName>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishProfile Include="Profiles\WizardCentralServerProduction.azurePubxml" />
   </ItemGroup>
   <!-- Import the target files for this project template -->
   <PropertyGroup>

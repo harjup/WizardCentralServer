@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using WizardCentralServer.Model.Dtos;
 using WizardWebApi.Controllers;
 
-namespace WizardWebRole.Tests
+namespace WizardWebApi.Tests
 {
     [TestClass]
     public class TimeControllerTests
