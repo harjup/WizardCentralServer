@@ -5,8 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="202b69210b6e489f84c70c60ab240ec5" Name="Diagram1">
-        <EntityTypeShape EntityType="SuperWizardDBModel.Comment" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SuperWizardDBModel.UserComment" Width="1.5" PointX="3.25" PointY="0.875" />
+        <EntityTypeShape EntityType="SuperWizardDBModel.UserComment" Width="1.5" PointX="0.875" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

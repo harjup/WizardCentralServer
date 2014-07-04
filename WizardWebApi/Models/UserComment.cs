@@ -7,8 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Newtonsoft.Json;
-
 namespace WizardWebApi.Models
 {
     using System;
@@ -22,5 +20,7 @@ namespace WizardWebApi.Models
         public string Mood { get; set; }
         public Nullable<int> SessionTime { get; set; }
         public Nullable<System.DateTime> DateTime { get; set; }
+        public string Location { get; set; }
+        public string WorldPositon { get; set; }
     }
 }

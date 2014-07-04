@@ -25,7 +25,6 @@ namespace WizardWebApi.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<UserComment> UserComments { get; set; }
     }
 }
