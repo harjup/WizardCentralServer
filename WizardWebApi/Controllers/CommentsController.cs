@@ -66,7 +66,8 @@ namespace WizardWebApi.Controllers
             return messages;
         }
 
-        // POST: api/Values
+        [HttpPost]
+        [Route("api/comments")]
         public IHttpActionResult Post(UserComment comment)
         {
             using (_superWizardContext = new SuperWizardDBEntities())
