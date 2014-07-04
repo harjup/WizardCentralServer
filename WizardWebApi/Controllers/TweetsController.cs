@@ -9,7 +9,7 @@ using System.Web.Compilation;
 using System.Web.Http;
 using Newtonsoft.Json;
 using RestSharp;
-using WizardWebApi.Models.Dtos;
+using WizardCentralServer.Model.Dtos;
 using WizardWebApi.Models.Objects;
 
 namespace WizardWebApi.Controllers

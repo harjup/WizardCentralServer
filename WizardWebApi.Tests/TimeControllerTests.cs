@@ -2,8 +2,8 @@
 using System.Web.Http.Results;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using WizardCentralServer.Model.Dtos;
 using WizardWebApi.Controllers;
-using WizardWebApi.Models.Dtos;
 
 namespace WizardWebRole.Tests
 {

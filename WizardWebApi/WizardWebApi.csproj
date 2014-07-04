@@ -162,7 +162,6 @@
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Objects\AccessToken.cs" />
-    <Compile Include="Models\Objects\TimeApiDate.cs" />
     <Compile Include="Models\MyModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -178,7 +177,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MyModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Objects\TwitterStatusResults.cs" />
     <Compile Include="Models\UserComment.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
@@ -214,13 +212,18 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\" />
-    <Folder Include="Models\Dtos\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WizardCentralServer.Model\WizardCentralServer.Model.csproj">
+      <Project>{4eae964a-749f-4791-bcf0-6ccd77feb65f}</Project>
+      <Name>WizardCentralServer.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

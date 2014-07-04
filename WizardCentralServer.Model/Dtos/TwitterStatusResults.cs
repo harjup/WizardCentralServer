@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace WizardWebApi.Models.Objects
+namespace WizardCentralServer.Model.Dtos
 {
     public class TwitterStatusResults
     {

@@ -65,6 +65,10 @@
     <Compile Include="TweetControllerTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WizardCentralServer.Model\WizardCentralServer.Model.csproj">
+      <Project>{4eae964a-749f-4791-bcf0-6ccd77feb65f}</Project>
+      <Name>WizardCentralServer.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WizardWebApi\WizardWebApi.csproj">
       <Project>{7D147F1F-ECAD-45DD-8BB7-92497EAE8BC6}</Project>
       <Name>WizardWebApi</Name>
