@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
@@ -22,7 +23,7 @@ namespace WizardWebPage
         private readonly TimeSpan _updateInterval = TimeSpan.FromMilliseconds(1000);
         private readonly Timer _timer;
 
-        private GhostTracker(IHubConnectionContext clients)
+        private GhostTracker(IHubConnectionContext<dynamic> clients)
         {
             Clients = clients;
 
@@ -37,7 +38,7 @@ namespace WizardWebPage
             }
         }
 
-        private IHubConnectionContext Clients
+        private IHubConnectionContext<dynamic> Clients
         {
             get;
             set;
@@ -64,7 +65,7 @@ namespace WizardWebPage
 
                 List<GhostPosition> positionList = positions.Select(ghostPosition => ghostPosition.Value).ToList();
                 var payload = JsonConvert.SerializeObject(positionList);
-                Clients.All.updatePositions(payload);
+                Clients.Group(GhostHub.RoomName).updatePositions(payload);
             }
         }
     }

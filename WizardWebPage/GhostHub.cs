@@ -11,6 +11,8 @@ namespace WizardWebPage
     public class GhostHub : Hub
     {
         private readonly GhostTracker _ghostTracker;
+        public const string RoomName = "hubzone";
+
 
         public GhostHub() : this(GhostTracker.Instance) { }
 
@@ -21,13 +23,14 @@ namespace WizardWebPage
 
         public override Task OnConnected()
         {
-            _ghostTracker.AddOrUpdateGhost(new GhostPosition(){ name = Context.ConnectionId, position = "(0,0,0)"});
+            //TODO: Determine if I need this bit
+            ActivateGhost();
             return base.OnConnected();
         }
 
         public override Task OnDisconnected()
         {
-            _ghostTracker.RemoveGhost(Context.ConnectionId);
+            DeactivateGhost();
             return base.OnDisconnected();
         }
 
@@ -35,6 +38,7 @@ namespace WizardWebPage
         //When the player enters the hub they should add their ghost to the list
         public void ActivateGhost()
         {
+            Groups.Add(Context.ConnectionId, RoomName);
             _ghostTracker.AddOrUpdateGhost(new GhostPosition() { name = Context.ConnectionId, position = "(0,0,0)" });
         }
 
@@ -43,6 +47,7 @@ namespace WizardWebPage
         // and they should stop receiving ghost broadcasts
         public void DeactivateGhost()
         {
+            Groups.Remove(Context.ConnectionId, RoomName);
             _ghostTracker.RemoveGhost(Context.ConnectionId);
         }
 
