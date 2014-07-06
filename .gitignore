@@ -4,7 +4,7 @@
 
 ##IGNORING MY WEBCONFIG BECUASE IT HAS SENSITITIVE INFORMATION IN IT, ##
 ## SORRY FOLKS ##
-Web.config
+WizardWebApi/Web.config
 
 # User-specific files
 *.suo
@@ -177,3 +177,4 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+
