@@ -40,6 +40,12 @@ namespace WizardWebPage
             return base.OnDisconnected();
         }
 
+        /* 
+        public void GetIdentifier(){
+            _ghostTracker.AddClientIdentifier(Context.ConnectionId);
+        }
+        */
+        
         //When the player enters the hub they should add their ghost to the list
         public void ActivateGhost()
         {
@@ -57,6 +63,11 @@ namespace WizardWebPage
 
         public void SetGhostPosition(string transform)
         {
+            /*
+            var id = _ghostTracker.GetClientId(Context.ConnectionId);
+            _ghostTracker.AddOrUpdateGhost(new GhostPosition(id, transform));
+            */
+            
             _ghostTracker.AddOrUpdateGhost(new GhostPosition(Context.ConnectionId, transform));
         }
 
