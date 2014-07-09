@@ -67,6 +67,14 @@
                     $.connection.ghostHub.server.setGhostPosition(position);
                 }
 
+                $.startGhost = function startGhost() {
+                    $.connection.ghostHub.server.activateGhost();
+                }
+
+                $.stopGhost = function stopGhost() {
+                    $.connection.ghostHub.server.deactivateGhost();
+                }
+
                 $.unityObject = u;
             });
             -->

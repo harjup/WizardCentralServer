@@ -64,9 +64,9 @@ namespace WizardWebPage
                     return;
 
 
-                /*
-                TODO: Ensure this works, then apply it. Maybe sure the Unity endpoint is expecting this as well
-                List<GhostPosition> positionList = positions.Select(ghostPosition => ghostPosition.ConvertToString()).ToList();
+                //TODO: Ensure this works, then apply it. Maybe sure the Unity endpoint is expecting this as well
+                List<string> positionList = positions.Select(ghostPosition => ghostPosition.Value.ConvertToString()).ToList();
+
                 //TODO: Do this with string builder
                 var payload = "";
                 foreach (var ghostString in positionList)
@@ -74,10 +74,9 @@ namespace WizardWebPage
                     payload += ghostString;
                 }
                 Clients.All.updatePositions(payload);
-                */
 
-                List<GhostPosition> positionList = positions.Select(ghostPosition => ghostPosition.Value).ToList();
-                var payload = JsonConvert.SerializeObject(positionList);
+                //List<GhostPosition> positionList = positions.Select(ghostPosition => ghostPosition.Value).ToList();
+                //var payload = JsonConvert.SerializeObject(positionList);  
                 Clients.Group(GhostHub.RoomName).updatePositions(payload);
             }
         }
