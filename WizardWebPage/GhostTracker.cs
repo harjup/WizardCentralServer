@@ -18,6 +18,11 @@ namespace WizardWebPage
 
         private readonly ConcurrentDictionary<string, GhostPosition> positions = new ConcurrentDictionary<string, GhostPosition>();
 
+        /*
+            private int clientNumber = 0;
+            private readonly ConcurrentDictionary<string, string> clientIdentifiers = new ConcurrentDictionary<string, string>();
+        */
+        
         private  readonly  object _updatePositionsLock = new object();
 
         private readonly TimeSpan _updateInterval = TimeSpan.FromMilliseconds(1000);
@@ -43,7 +48,26 @@ namespace WizardWebPage
             get;
             set;
         }
+        
+/*    
+        public void AddClientIdentifier(string clientId){
+            clientNumber++;
+            //This should be ok as long as we don't have one person stayin the client for 9999 connections
+            if (clientNumber > 9999)
+            {
+                clientNumber = 0;
+            }
+            var shortId = clientNumber.ToString();
+            
+            //TODO: make it so both values have to be unique
+            clientIdentifiers.AddOrUpdate(clientId, shortId, (key, oldValue) => shortId);
+            Clients.Sender.setIdentifier(shortId);
+        }
 
+        public string GetClientId(string id){
+            return positions[id];
+        }
+*/
 
         public void AddOrUpdateGhost(GhostPosition ghost)
         {
@@ -53,6 +77,7 @@ namespace WizardWebPage
         public void RemoveGhost(string id)
         {
             GhostPosition position;
+            //TODO: remove id from clientIdentifiers
             positions.TryRemove(id, out position);
         }
 
