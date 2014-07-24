@@ -10,7 +10,6 @@ namespace WizardWebPage.Classes
         public string name;
         public string position;
 
-        //TODO: Ensure this actually compiles, integrate with server side
         public GhostPosition(string _name, string _position)
         {
             name = _name;
@@ -20,7 +19,6 @@ namespace WizardWebPage.Classes
 
         public string ConvertToString()
         {
-            //TODO: Use the fact that ids will only be letters to remove delimiter between name and position
             return String.Format("{0},{1}|", name, position);
         }
 

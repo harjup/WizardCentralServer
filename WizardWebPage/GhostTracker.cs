@@ -18,10 +18,10 @@ namespace WizardWebPage
 
         private readonly ConcurrentDictionary<string, GhostPosition> positions = new ConcurrentDictionary<string, GhostPosition>();
 
-        /*
-            private int clientNumber = 0;
-            private readonly ConcurrentDictionary<string, string> clientIdentifiers = new ConcurrentDictionary<string, string>();
-        */
+        
+        private static int clientNumber = 0;
+        private readonly ConcurrentDictionary<string, int> _clientIdentifiers = new ConcurrentDictionary<string, int>();
+        
         
         private  readonly  object _updatePositionsLock = new object();
 
@@ -49,36 +49,31 @@ namespace WizardWebPage
             set;
         }
         
-/*    
+    
         public void AddClientIdentifier(string clientId){
             clientNumber++;
             //This should be ok as long as we don't have one person stayin the client for 9999 connections
-            if (clientNumber > 9999)
+            if (clientNumber > 999)
             {
                 clientNumber = 0;
             }
-            var shortId = clientNumber.ToString();
+            var shortId = clientNumber;
             
-            //TODO: make it so both values have to be unique
-            clientIdentifiers.AddOrUpdate(clientId, shortId, (key, oldValue) => shortId);
-            Clients.Sender.setIdentifier(shortId);
+            _clientIdentifiers.AddOrUpdate(clientId, shortId, (key, oldValue) => shortId);
+            Clients.Client(clientId).setIdentifier(shortId);
         }
-
-        public string GetClientId(string id){
-            return positions[id];
-        }
-*/
 
         public void AddOrUpdateGhost(GhostPosition ghost)
         {
             positions.AddOrUpdate(ghost.name, ghost, (s, position) => ghost);
         }
 
-        public void RemoveGhost(string id)
+        public void RemoveGhost(string clientId)
         {
             GhostPosition position;
-            //TODO: remove id from clientIdentifiers
-            positions.TryRemove(id, out position);
+            int shortId;
+            _clientIdentifiers.TryRemove(clientId, out shortId);
+            positions.TryRemove(clientId, out position);
         }
 
         private void UpdatePositions(object state)
@@ -90,15 +85,19 @@ namespace WizardWebPage
 
 
                 //TODO: Ensure this works, then apply it. Maybe sure the Unity endpoint is expecting this as well
-                List<string> positionList = positions.Select(ghostPosition => ghostPosition.Value.ConvertToString()).ToList();
-
+                List<string> positionList = positions.Select(ghostPosition =>
+                {
+                    if (!_clientIdentifiers.ContainsKey(ghostPosition.Value.name)) return null;
+                    return String.Format("{0},{1}|", _clientIdentifiers[ghostPosition.Value.name], ghostPosition.Value.position);
+                }).ToList();
                 //TODO: Do this with string builder
                 var payload = "";
                 foreach (var ghostString in positionList)
                 {
                     payload += ghostString;
                 }
-                Clients.All.updatePositions(payload);
+
+                //Clients.All.updatePositions(payload);
 
                 //List<GhostPosition> positionList = positions.Select(ghostPosition => ghostPosition.Value).ToList();
                 //var payload = JsonConvert.SerializeObject(positionList);  

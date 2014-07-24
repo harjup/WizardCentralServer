@@ -56,11 +56,15 @@
                 });
                 //The web browser was doing some weird caching on the unity build so I incremented the name
                 //TODO: Make sure it doesn't cache I dunno
-                u.initPlugin(jQuery("#unityPlayer")[0], "Build2.unity3d");
+                u.initPlugin(jQuery("#unityPlayer")[0], "Build3.unity3d");
 
-                $.getPlayerId = function getPlayerId()
-                {
-                    u.getUnity().SendMessage("SignalrEndpoint", "SetPlayerId",  $.connection.hub.id);
+                $.getPlayerId = function getPlayerId() {
+                    var retval = "";
+                    if ($.playerIdentifier) {
+                        retval = $.playerIdentifier + "";
+                    }
+                    u.getUnity().SendMessage("SignalrEndpoint", "SetPlayerId",  retval);
+                    //u.getUnity().SendMessage("SignalrEndpoint", "SetPlayerId",  $.connection.hub.id);
                 }
 
                 $.updatePosition = function updatePosition(position) {
@@ -73,6 +77,9 @@
 
                 $.stopGhost = function stopGhost() {
                     $.connection.ghostHub.server.deactivateGhost();
+                }
+                $.broadcast = function broadcast(message) {
+                    $.connection.ghostHub.server.broadcast(message);
                 }
 
                 $.unityObject = u;
@@ -97,8 +104,24 @@
                     $.unityObject.getUnity().SendMessage("SignalrEndpoint", "OnRecieveGhostPositions", message);
                 }
             };
+
+            chat.client.recieveMessage = function (message) {
+                if ($.unityObject) {
+                    $.unityObject.getUnity().SendMessage("SignalrEndpoint", "OnRecieveNotification", message);
+                }
+            };
+
+            
+            chat.client.setIdentifier = function(id) {
+                if ($.unityObject) {
+                    $.unityObject.getUnity().SendMessage("SignalrEndpoint", "SetPlayerId", id + "");
+                    $.playerIdentifier = id;
+                }
+            }
+
             // Start the connection.
             $.connection.hub.start().done(function () {
+
                 //I dunno if I need anything in the callback
             });
         });

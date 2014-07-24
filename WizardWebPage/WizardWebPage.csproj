@@ -85,8 +85,7 @@
   <ItemGroup>
     <Content Include="index - Copy.html" />
     <Content Include="packages.config" />
-    <Content Include="Build2.unity3d" />
-    <Content Include="Build.unity3d" />
+    <Content Include="Build3.unity3d" />
     <None Include="Properties\PublishProfiles\WizardBroadcast.pubxml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Web.Debug.config">

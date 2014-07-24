@@ -50,6 +50,7 @@ namespace WizardWebPage
         public void ActivateGhost()
         {
             Groups.Add(Context.ConnectionId, RoomName);
+            GhostTracker.Instance.AddClientIdentifier(Context.ConnectionId);
             _ghostTracker.AddOrUpdateGhost(new GhostPosition(Context.ConnectionId,"(0,0,0)" ));
         }
 
@@ -71,6 +72,10 @@ namespace WizardWebPage
             _ghostTracker.AddOrUpdateGhost(new GhostPosition(Context.ConnectionId, transform));
         }
 
-        
+        public void Broadcast(string message)
+        {
+            Clients.Others.RecieveMessage(message);
+        }
+
     }
 }

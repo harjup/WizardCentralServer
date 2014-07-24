@@ -17,8 +17,8 @@ namespace WizardWebApi.Controllers
         private static SuperWizardDBEntities _superWizardContext;
 
         [HttpGet]
-        [Route("api/comments/{time?}")]
-        public IEnumerable<UserComment> Get(int time = -1)
+        [Route("api/comments/{level}/{time?}")]
+        public IEnumerable<UserComment> Get(string level, int time = -1)
         {
             var messages = new List<UserComment>();
 
@@ -29,6 +29,7 @@ namespace WizardWebApi.Controllers
                 if (time == -1)
                 {
                     commentQuery = (from c in _superWizardContext.UserComments
+                                        where c.Location == level
                                         orderby c.DateTime descending
                                         select c).Take(15);
                 }
@@ -40,6 +41,7 @@ namespace WizardWebApi.Controllers
                     //If it works the way it's supposed to it'll order comments by when they were posted,
                     //Then get the ones closest to the current sessionTime
                     commentQuery = _superWizardContext.UserComments
+                        .Where(c => c.Location == level)
                         .OrderByDescending(c => c.DateTime)
                         .Select(c => new {c, distance = Math.Abs(c.SessionTime.Value - time)})
                         .OrderBy(p => p.distance)
