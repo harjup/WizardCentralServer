@@ -25,7 +25,7 @@ namespace WizardWebPage
         
         private  readonly  object _updatePositionsLock = new object();
 
-        private readonly TimeSpan _updateInterval = TimeSpan.FromMilliseconds(1000);
+        private readonly TimeSpan _updateInterval = TimeSpan.FromMilliseconds(250);
         private readonly Timer _timer;
 
         private GhostTracker(IHubConnectionContext<dynamic> clients)
