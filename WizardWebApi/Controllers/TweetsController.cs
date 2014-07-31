@@ -33,8 +33,7 @@ namespace WizardWebApi.Controllers
             var tokenResult = new RestClient().Execute(tokenRequest);
             var accessToken = JsonConvert.DeserializeObject<AccessToken>(tokenResult.Content);
 
-
-            var request = new RestRequest(@"https://api.twitter.com/1.1/search/tweets.json?q=%23shrek&lang=en&result_type=recent&count=20")
+            var request = new RestRequest(@"https://api.twitter.com/1.1/search/tweets.json?q=%23shrek%20OR%20%23dumbledore%20OR%20%23gandalf%20OR%20%23snape&lang=en&result_type=recent&count=20")
             {
                 Method = Method.GET
             };
