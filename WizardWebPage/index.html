@@ -56,8 +56,9 @@
                 });
                 //The web browser was doing some weird caching on the unity build so I incremented the name
                 //TODO: Make sure it doesn't cache I dunno
-                u.initPlugin(jQuery("#unityPlayer")[0], "Build3.unity3d");
+                u.initPlugin(jQuery("#unityPlayer")[0], "BuildBeta.unity3d");
 
+                //Don't mess with this stuff, ok?
                 $.getPlayerId = function getPlayerId() {
                     var retval = "";
                     if ($.playerIdentifier) {
@@ -96,6 +97,7 @@
     <!--Add script to update the page and send messages.-->
     <script type="text/javascript">
         $(function () {
+            
             // Declare a proxy to reference the hub.
             var chat = $.connection.ghostHub;
             // Create a function that the hub can call to broadcast messages.

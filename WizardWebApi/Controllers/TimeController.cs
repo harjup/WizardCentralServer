@@ -22,6 +22,7 @@ namespace WizardWebApi.Controllers
             
             var result = new RestClient().Execute(request);
             var content = JsonConvert.DeserializeObject<TimeApiDate>(result.Content);
+
             return Ok(content);
         }
     }
