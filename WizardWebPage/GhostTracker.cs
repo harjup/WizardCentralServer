@@ -84,7 +84,6 @@ namespace WizardWebPage
                     return;
 
 
-                //TODO: Ensure this works, then apply it. Maybe sure the Unity endpoint is expecting this as well
                 List<string> positionList = positions.Select(ghostPosition =>
                 {
                     if (!_clientIdentifiers.ContainsKey(ghostPosition.Value.name)) return null;
@@ -96,8 +95,6 @@ namespace WizardWebPage
                 {
                     payload += ghostString;
                 }
-
-                //Clients.All.updatePositions(payload);
 
                 //List<GhostPosition> positionList = positions.Select(ghostPosition => ghostPosition.Value).ToList();
                 //var payload = JsonConvert.SerializeObject(positionList);  
