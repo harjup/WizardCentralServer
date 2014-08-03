@@ -10,13 +10,6 @@ namespace WizardWebPage
 {
     public class GhostHub : Hub
     {
-        //TODO: Data usage by...
-        //1) Map client Ids to sequential numbers and using those for clients to idenitfy themselves
-        //2.) Reduce json parameters from "name" and "position" to "n" and "p"
-        //3.) Reduce the rate at which data is braodcast (from once per 1 sec to once per 2 sec or sommin)
-        //4.) Dynamically increase/decrease update rates depending on current number of players
-        //5.) Instead of json, reduce reponse to something like name,x,y,z|name,x,y,z|name,x,y,z
-
         private readonly GhostTracker _ghostTracker;
         public const string RoomName = "hubzone";
 
