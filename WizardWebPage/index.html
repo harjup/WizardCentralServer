@@ -58,7 +58,9 @@
                 //TODO: Make sure it doesn't cache I dunno
                 u.initPlugin(jQuery("#unityPlayer")[0], "BuildUpdate.unity3d");
 
-                //Don't mess with this stuff, ok?
+                //I started shoving the functions I wanted Unity to use into the JQuery object
+                //Because I didn't realize you can just have globals in javascript if you omit 'var' from the declaration.
+                //Now I don't feel like changing it ~_~
                 $.getPlayerId = function getPlayerId() {
                     var retval = "";
                     if ($.playerIdentifier) {
