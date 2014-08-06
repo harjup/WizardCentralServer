@@ -83,9 +83,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="index - Copy.html" />
+    <Content Include="entryBuild.html" />
     <Content Include="packages.config" />
     <Content Include="BuildBeta.unity3d" />
+    <Content Include="BuildUpdate.unity3d" />
     <None Include="Properties\PublishProfiles\WizardBroadcast.pubxml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Web.Debug.config">
