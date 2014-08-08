@@ -56,7 +56,7 @@
                 });
                 //The web browser was doing some weird caching on the unity build so I incremented the name
                 //TODO: Make sure it doesn't cache I dunno
-                u.initPlugin(jQuery("#unityPlayer")[0], "BuildUpdate.unity3d");
+                u.initPlugin(jQuery("#unityPlayer")[0], "BuildUpdate2.unity3d");
 
                 //I started shoving the functions I wanted Unity to use into the JQuery object
                 //Because I didn't realize you can just have globals in javascript if you omit 'var' from the declaration.
@@ -84,6 +84,9 @@
                 $.broadcast = function broadcast(message) {
                     $.connection.ghostHub.server.broadcast(message);
                 }
+                $.submitScore = function submitScore(name, score) {
+                    $.connection.ghostHub.server.submitScore(name, score);
+                }
 
                 $.unityObject = u;
             });
@@ -99,7 +102,7 @@
     <!--Add script to update the page and send messages.-->
     <script type="text/javascript">
         $(function () {
-            
+
             // Declare a proxy to reference the hub.
             var chat = $.connection.ghostHub;
             // Create a function that the hub can call to broadcast messages.
@@ -115,11 +118,17 @@
                 }
             };
 
-            
+
             chat.client.setIdentifier = function(id) {
                 if ($.unityObject) {
                     $.unityObject.getUnity().SendMessage("SignalrEndpoint", "SetPlayerId", id + "");
                     $.playerIdentifier = id;
+                }
+            }
+
+            chat.client.scoreBroadcast = function(scoreMessage) {
+                if ($.unityObject) {
+                    $.unityObject.getUnity().SendMessage("SignalrEndpoint", "OnRecieveScore", scoreMessage);
                 }
             }
 

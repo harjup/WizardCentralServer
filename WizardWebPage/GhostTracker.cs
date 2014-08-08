@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
@@ -101,5 +102,12 @@ namespace WizardWebPage
                 Clients.Group(GhostHub.RoomName).updatePositions(payload);
             }
         }
+
+        public void ScoreBroadcast(string name, string score)
+        {
+            Clients.All.scoreBroadcast(name + "|" + score);
+        }
+
+
     }
 }

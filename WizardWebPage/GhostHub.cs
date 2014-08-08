@@ -70,5 +70,10 @@ namespace WizardWebPage
             Clients.Others.RecieveMessage(message);
         }
 
+        public void SubmitScore(string name, int score)
+        {
+            _ghostTracker.ScoreBroadcast(name, score.ToString());
+        }
+
     }
 }
